@@ -13,6 +13,35 @@
 // You don't have to though: it's perfectly okay to write three separate
 // implementations manually. Venture further only if you're curious.
 
+// Define the Power trait with a method `power` that can accept different types for `n`
+trait Power {
+    fn power<N>(self, n: N) -> Self
+    where
+        N: Into<u32>; // Convert `N` into `u32` for exponentiation
+}
+
+// Implement Power trait for i32
+impl Power for u32 {
+    fn power<N>(self, n: N) -> u32
+    where
+        N: Into<u32>,
+    {
+        let exponent = n.into();
+        self.pow(exponent)
+    }
+}
+
+// Implement Power trait for f64
+impl Power for &u32 {
+    fn power<N>(self, n: N) -> u32
+    where
+        N: Into<u32>,
+    {
+        let exponent = n.into();
+        self.powi(exponent as i32)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::Power;

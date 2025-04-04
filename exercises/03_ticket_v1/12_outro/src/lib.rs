@@ -21,12 +21,12 @@ pub struct Order {
 }
 
 impl Order {
-    pub fn new(product_name: String, quantity: u8, unit_price: u16) -> Self {
+    pub fn new(product_name: String, quantity: u8, unit_price: u16) -> Order {
         valid_product_name(&product_name);
         valid_quantity(&quantity);
         valid_unit_price(&unit_price);
 
-        Self {
+        Order {
             product_name,
             quantity,
             unit_price
